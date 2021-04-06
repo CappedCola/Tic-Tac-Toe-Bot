@@ -32,7 +32,7 @@ function mouseClicked(){
         playerTurn = false
     }
     else{
-        //random move
+        //random mov
         computerMove = Math.trunc(random(9))
         console.log(computerMove)
 
