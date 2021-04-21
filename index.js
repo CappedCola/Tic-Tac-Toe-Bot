@@ -32,7 +32,42 @@ function draw(){
     }
   }
   //check if someone won
-  
+  for(var i = 0; i < 3; i++){
+    if(grid[i][0] === grid [i][1] && grid[i][1] === grid[i][2] && grid [i][0] != undefined){
+      gameOver = true
+      if(grid[i][0] === 'red'){
+        background(255,0,0)
+      }else{
+        background(0,255,0)
+      }
+    }
+    if(grid[0][i] === grid [1][i] && grid[1][i] === grid[2][i] && grid [0][i] != undefined){
+      gameOver = true
+      if(grid[0][i] === 'red'){
+        background(255,0,0)
+      }else{
+        background(0,255,0)
+      }
+    }
+    if(grid[0][0] === grid [2][2] && grid[1][1] === grid[0][0] && grid[0][0] != undefined){
+      gameOver = true
+      if(grid[0][0] === 'red'){
+        background(255,0,0)
+      }else{
+        background(0,255,0)
+      }
+    }
+    if(grid[2][0] === grid [0][2] && grid[1][1] === grid[2][0] && grid[2][0] != undefined){
+      gameOver = true
+      if(grid[2][0] === 'red'){
+        background(255,0,0)
+      }else{
+        background(0,255,0)
+      }
+    }
+  }
+
+  //random move
   if(playerTurn === false && gridValue < 9 && gameOver == false){
     var madeMove = false
     while(madeMove === false){
@@ -78,8 +113,9 @@ function computerMove(){
 
 //mouse clicked and player move and logic
 function mouseClicked(){
-    if (playerTurn === true){
+    if (playerTurn === true && gameOver === false){
       fill(0,255,0)
+      console.log(grid)
       if(mouseX > 535 && mouseX < 1295 && mouseY > 70 && mouseY <830){
           if (mouseX > 1035 && mouseX < 1295){
               //right side
