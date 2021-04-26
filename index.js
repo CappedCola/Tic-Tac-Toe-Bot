@@ -67,17 +67,10 @@ function draw(){
     }
   }
 
-  //random move
+  //computer move 
   if(playerTurn === false && gridValue < 9 && gameOver == false){
-    var madeMove = false
-    while(madeMove === false){
-      var randomX = Math.trunc(random(3))
-      var randomY = Math.trunc(random(3))
-      if(grid[randomX][randomY] === undefined){
-        grid[randomX][randomY] = 'red'
-        madeMove = true
-      }
-    }
+    bestMove()
+  }
     
 
 
@@ -102,14 +95,50 @@ function draw(){
     }if(grid[2][2] === 'red'){
       circle(width/2+260, height/2+250, 200)
     }
-    playerTurn = true
-    
-  }
-}   
-//computer move/logic
-function computerMove(){
-  
+    playerTurn = true 
 }
+
+//player = 'X' ai = 'O'
+function checkWinner(){
+  let winner = null
+
+  for(var i = 0; i < 3; i++){
+    if(grid[i][0] === grid [i][1] && grid[i][1] === grid[i][2] && grid [i][0] != undefined){
+      if(grid[i][0] === 'red'){
+        return 'O'
+      }else{
+        return 'X'
+      }
+    }
+    if(grid[0][i] === grid [1][i] && grid[1][i] === grid[2][i] && grid [0][i] != undefined){
+      if(grid[0][i] === 'red'){
+        return 'O'
+      }else{
+        return 'X'
+      }
+    }
+    if(grid[0][0] === grid [2][2] && grid[1][1] === grid[0][0] && grid[0][0] != undefined){
+      gameOver = true
+      if(grid[0][0] === 'red'){
+        return 'O'
+      }else{
+        return 'X'
+      }
+    }
+    if(grid[2][0] === grid [0][2] && grid[1][1] === grid[2][0] && grid[2][0] != undefined){
+      if(grid[2][0] === 'red'){
+        return 'O'
+      }else{
+        return 'X'
+      }
+    }
+  }
+  if(gridValue === 9){
+    return 'tie'
+  }
+  return null
+}
+
 
 //mouse clicked and player move and logic
 function mouseClicked(){
